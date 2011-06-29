@@ -44,7 +44,7 @@ module PoetryUtils
             count = count + 1 if word.length == 1	# 'x'
             # count vowel groupings
             count = count + scrugg.length
-            return (count == 0) ? 1 : count 
+            return (count == 0) ? 1 : count-1 
     end
 
     def PoetryUtils.clean(line)

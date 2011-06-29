@@ -1,10 +1,11 @@
-require './poetry_utils.rb'
-require './database_maker.rb'
+require_relative 'poetry_utils.rb'
+require_relative 'database_connect.rb'
 
-class Couplet_DB_Maker < Database_Maker
+class Couplet_DB_Maker < Database_Connect
 
 	COUPLET_CORPUS = "couplet_corpus"
 	RHYMES = "rhymes"
+    RAND_LIMIT = 1000000
 	
 	private 
 
@@ -31,7 +32,11 @@ class Couplet_DB_Maker < Database_Maker
                             #  PoetryUtils.words(line).map {|w| PoetryUtils.syllables(w) }.inject(:+)
                             PoetryUtils.syllables(line)
                            end }
-        tests << syllables       
+        tests << syllables
+
+        # Random number - used to select random line
+        random = { :name => "random", :func => lambda { |line| rand(RAND_LIMIT) } }
+        tests << random       
 	end
 	
 	def insert_corpus_row(line,tests,corpus) 
@@ -50,8 +55,15 @@ class Couplet_DB_Maker < Database_Maker
         database do |db|
                 db.drop_collection(COUPLET_CORPUS)
                 db.drop_collection(RHYMES)
+                
                 couplet_corpus = db[COUPLET_CORPUS]
+                couplet_corpus.create_index("firstword")
+                couplet_corpus.create_index("lastword")
+                couplet_corpus.create_index("syllables")
+                couplet_corpus.create_index("random")
+
                 rhymes = db[RHYMES]
+                
                 PoetryUtils.clean_lines(file) { |line| insert_corpus_row(line,tests,couplet_corpus) }
         end
 	end

@@ -1,7 +1,7 @@
 require 'mongo'
-require './poetry_utils.rb'
+require_relative 'poetry_utils.rb'
 
-class Database_Maker
+class Database_Connect
 	
 	protected
 

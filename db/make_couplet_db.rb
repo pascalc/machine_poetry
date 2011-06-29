@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require './couplet_db_maker.rb'
+require_relative 'couplet_db_maker.rb'
 
 if ARGV.length != 1
 	puts "USAGE: make_couplet_db [raw_corpus.txt]"
