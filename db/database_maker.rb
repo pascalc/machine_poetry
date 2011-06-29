@@ -1,5 +1,5 @@
 require 'mongo'
-require 'iconv'
+require './poetry_utils.rb'
 
 class Database_Maker
 	
@@ -12,21 +12,6 @@ class Database_Maker
 	  db = @conn.db(DB_NAME)
 	end	
 
-	def clean(line)
-	  # Fix UTF8 issues
-	  ic = Iconv.new('UTF-8//IGNORE', 'UTF-8')
-	  line = ic.iconv(line << ' ')[0..-2]
-	  
-	  line.strip! == "" ? false : line
-	end
-
-	def select_word(index)
-	  lambda do |line|
-	    words = line.scan(/[a-zA-Z\-']+/)
-	    words[index]
-	  end
-	end
-
 	def close_db
 	  @conn.close
 	end
@@ -36,7 +21,7 @@ class Database_Maker
 	def process(file)
 	  db = connect_db
 	  file.lines.each do |line|
-	    next unless line = clean(line)
+	    next unless line = PoetryUtils.clean(line)
 	    yield(db,line)
 	   end
 	  close_db

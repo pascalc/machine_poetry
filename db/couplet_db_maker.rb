@@ -1,3 +1,4 @@
+require './poetry_utils.rb'
 require './database_maker.rb'
 
 class Couplet_DB_Maker < Database_Maker
@@ -14,10 +15,10 @@ class Couplet_DB_Maker < Database_Maker
 		tests << length
 
 		first_word = { :name => "firstword", 
-			       :func => select_word(0) }
+			       :func => PoetryUtils.select_word(0) }
 		tests << first_word
 		last_word = { :name => "lastword", 
-			      :func => select_word(-1) }
+			      :func => PoetryUtils.select_word(-1) }
 		tests << last_word
 	end
 	
