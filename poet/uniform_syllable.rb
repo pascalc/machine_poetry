@@ -21,8 +21,8 @@ c.database do |db|
     puts first_line["text"].capitalize
 
     # Select next 3 lines to have a similar amount of syllables
-    uplimit = first_line["syllables"] + 3
-    downlimit = first_line["syllables"] - 3
+    uplimit = first_line["syllables"] + 1
+    downlimit = first_line["syllables"] - 1
 
     candidates = corpus.find({"syllables" => {"$gt" => downlimit, "$lt" => uplimit}})
     candidates.to_a.shuffle.take(3).each { |doc| puts doc["text"] }
