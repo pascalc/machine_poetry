@@ -7,23 +7,20 @@ class Database_Maker
 
 	DB_NAME = "machine_poetry_db"
 	
-	def connect_db
+	def connect
 	  @conn = Mongo::Connection.new
 	  db = @conn.db(DB_NAME)
 	end	
 
-	def close_db
+	def close
 	  @conn.close
 	end
 
 	public
 
-	def process(file)
-	  db = connect_db
-	  file.lines.each do |line|
-	    next unless line = PoetryUtils.clean(line)
-	    yield(db,line)
-	   end
-	  close_db
-	end
+    def database
+      db = connect
+      yield(db)
+      close
+    end
 end
