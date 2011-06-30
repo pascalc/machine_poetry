@@ -33,5 +33,10 @@ c.database do |db|
 
     candidates = corpus.find({"syllables" => {"$gt" => downlimit, "$lt" => uplimit}})
     reps = ARGV[0].nil? ? 3 : ARGV[0].to_i-1
-    reps.times { puts clean(candidates.next["text"]) }
+    reps.times do 
+      r = rand(candidates.count)
+      candidates.skip(r)
+      puts clean(candidates.next["text"])
+      candidates.rewind!
+    end
 end
