@@ -1,5 +1,5 @@
-require_relative 'poetry_utils.rb'
-require_relative 'database_connect.rb'
+require_relative '../poetry_utils.rb'
+require_relative '../database_connect.rb'
 
 class Couplet_DB_Maker < Database_Connect
 
