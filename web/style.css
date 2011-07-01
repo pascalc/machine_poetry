@@ -1,3 +1,6 @@
+@import url("http://fonts.googleapis.com/css?family=Goudy+Bookletter+1911:regular&v1");
+@import url("http://fonts.googleapis.com/css?family=Terminal+Dosis+Light:regular&v1");
+
 #container {
 	width: 800px;
 	margin-left: auto;
@@ -5,8 +8,10 @@
 }
 
 h1 {
-	font-family: 'LatinModernMono10Regular';
-	font-size: 60px;
+	font-family: 'Terminal Dosis Light', serif;
+    font-size: 88px;
+    font-weight: 700;
+    line-height: 1.2;
 }
 
 a {
@@ -19,30 +24,8 @@ a:hover {
 }
 
 #poem {
-	font-family: 'TangerineRegular';
-	font-size: 45px;
-}
-
-@font-face {
-    font-family: 'TangerineRegular';
-    src: url('Tangerine_Regular-webfont.eot');
-    src: url('Tangerine_Regular-webfont.eot?#iefix') format('embedded-opentype'),
-         url('Tangerine_Regular-webfont.woff') format('woff'),
-         url('Tangerine_Regular-webfont.ttf') format('truetype'),
-         url('Tangerine_Regular-webfont.svg#TangerineRegular') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
-}
-
-@font-face {
-    font-family: 'LatinModernMono10Regular';
-    src: url('lmmono10-regular-webfont.eot');
-    src: url('lmmono10-regular-webfont.eot?#iefix') format('embedded-opentype'),
-         url('lmmono10-regular-webfont.woff') format('woff'),
-         url('lmmono10-regular-webfont.ttf') format('truetype'),
-         url('lmmono10-regular-webfont.svg#LatinModernMono10Regular') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
+	font-family: 'Goudy Bookletter 1911', serif;
+    font-size: 36px;
+    font-weight: 400;
+    line-height: 1.2;
 }
