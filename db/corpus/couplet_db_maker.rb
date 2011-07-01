@@ -40,7 +40,7 @@ class Couplet_DB_Maker < Database_Connect
   end
 
   def insert_corpus_row(line,tests,corpus)
-    row = { "text" => line }
+    row = { "text" => line.split }
     tests.each do |test|
       row[test[:name]] = test[:func].call(line)
     end
@@ -57,6 +57,7 @@ class Couplet_DB_Maker < Database_Connect
       db.drop_collection(RHYMES)
 
       couplet_corpus = db[COUPLET_CORPUS]
+      couplet_corpus.create_index("text")
       couplet_corpus.create_index("firstword")
       couplet_corpus.create_index("lastword")
       couplet_corpus.create_index("syllables")

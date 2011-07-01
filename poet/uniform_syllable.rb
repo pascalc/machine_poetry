@@ -27,7 +27,7 @@ c.database do |db|
 
     # First line is random
     first_line = random_doc(corpus)
-    first_line["text"].capitalize!
+    first_line["text"][0].capitalize!
     poem << first_line["text"]
 
     # Select next lines to have a similar amount of syllables
@@ -44,5 +44,5 @@ c.database do |db|
     end
 end
 
-print poem.map { |line| clean(line) }.join("\n")
+print poem.map { |line| clean(line.join(" ")) }.join("\n")
 puts (poem[-1] =~ /[!?.]$/ ? "" : ".")
